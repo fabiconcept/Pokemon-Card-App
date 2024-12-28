@@ -1,9 +1,25 @@
-import { Platform, StyleSheet, Text, View } from "react-native";
+import { PokemonData } from "@/lib/Interfaces/Pokemon";
+import { Image, Platform, StyleSheet, Text, View } from "react-native";
 
-export default function PokemonCard() {
+export default function PokemonCard({ hp, id, image, moves, name, type, weakness }: PokemonData) {
     return (
         <View style={styles.card}>
-            <Text> Pokemon Card </Text>
+            <View>
+                <Text>{name}</Text>
+                <Text>{hp}</Text>
+            </View>
+
+            <Image source={image} accessibilityLabel={`${name} Pokemon`} />
+
+            <View>
+                <Text>{type}</Text>
+            </View>
+            <View>
+                <Text>{moves.join(", ")}</Text>
+            </View>
+            <View>
+                <Text>{weakness.join(", ")}</Text>
+            </View>
         </View>
     )
 }
@@ -23,7 +39,7 @@ const styles = StyleSheet.create({
                 shadowRadius: 4
             },
             android: {
-                elevation: 10
+                elevation: 5
             }
         })
     }
