@@ -1,7 +1,11 @@
+import { getTypeBagde } from "@/lib";
 import { PokemonData } from "@/lib/Interfaces/Pokemon";
 import { Image, Platform, StyleSheet, Text, View } from "react-native";
 
-export default function PokemonCard({ hp, id, image, moves, name, type, weakness }: PokemonData) {
+export default function PokemonCard({ hp, image, moves, name, type, weakness }: PokemonData) {
+
+    const { borderColor, emoji } = getTypeBagde(type);
+
     return (
         <View style={styles.card}>
             <View style={styles.header}>
@@ -11,14 +15,18 @@ export default function PokemonCard({ hp, id, image, moves, name, type, weakness
 
             <Image resizeMode="contain" style={styles.image} source={image} accessibilityLabel={`${name} Pokemon`} />
 
-            <View>
-                <Text>{type}</Text>
+            <View style={styles.typeContainer}>
+                <View style={[styles.bagde, { borderColor }]}>
+                    <Text style={styles.emoji} >{emoji}</Text>
+                    <Text style={styles.text} >{type}</Text>
+                </View>
             </View>
-            <View>
-                <Text>{moves.join(", ")}</Text>
+
+            <View style={styles.moves}>
+                <Text style={styles.movesText}>{moves.join(", ")}</Text>
             </View>
-            <View>
-                <Text>{weakness.join(", ")}</Text>
+            <View style={styles.weakness}>
+                <Text style={styles.weaknessText}>{weakness.join(", ")}</Text>
             </View>
         </View>
     )
@@ -60,4 +68,38 @@ const styles = StyleSheet.create({
         height: 200,
         marginBlock: 16,
     },
+    typeContainer: {
+        marginBottom: 40,
+        alignItems: "center",
+    },
+    bagde: {
+        flexDirection: "row",
+        alignItems: "center",
+        paddingVertical: 6,
+        paddingHorizontal: 16,
+        borderRadius: 20,
+        borderWidth: 4
+    },
+    emoji: {
+        fontSize: 30,
+        marginRight: 12,
+    },
+    text: {
+        fontSize: 22,
+        fontWeight: "bold"
+    },
+    moves: {
+        marginBottom: 16
+    },
+    movesText: {
+        fontSize: 22,
+        fontWeight: "bold",
+    },
+    weakness: {
+        marginBottom: 8
+    },
+    weaknessText: {
+        fontSize: 22,
+        fontWeight: "bold",
+    }
 });
