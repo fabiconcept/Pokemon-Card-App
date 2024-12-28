@@ -4,12 +4,12 @@ import { Image, Platform, StyleSheet, Text, View } from "react-native";
 export default function PokemonCard({ hp, id, image, moves, name, type, weakness }: PokemonData) {
     return (
         <View style={styles.card}>
-            <View>
-                <Text>{name}</Text>
-                <Text>{hp}</Text>
+            <View style={styles.header}>
+                <Text style={styles.name}>{name}</Text>
+                <Text style={styles.hp}>💗{hp}</Text>
             </View>
 
-            <Image source={image} accessibilityLabel={`${name} Pokemon`} />
+            <Image resizeMode="contain" style={styles.image} source={image} accessibilityLabel={`${name} Pokemon`} />
 
             <View>
                 <Text>{type}</Text>
@@ -42,5 +42,22 @@ const styles = StyleSheet.create({
                 elevation: 5
             }
         })
-    }
+    },
+    header: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginBottom: 32
+    },
+    name: {
+        fontSize: 30,
+        fontWeight: "bold"
+    },
+    hp: {
+        fontSize: 22,
+    },
+    image: {
+        width: "100%",
+        height: 200,
+        marginBlock: 16,
+    },
 });
