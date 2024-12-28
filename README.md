@@ -6,3 +6,4 @@
 - Part 47 : Build a Pokemon Card Game (3/6) ✅
 - Part 48 : Build a Pokemon Card Game (4/6) ✅
 - Part 49 : Build a Pokemon Card Game (5/6) ✅
+- Part 50 : Build a Pokemon Card Game (6/6) ✅
